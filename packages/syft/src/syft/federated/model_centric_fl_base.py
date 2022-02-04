@@ -20,7 +20,7 @@ from ..federated import JSONDict
 TIMEOUT_INTERVAL = 60
 
 
-class GridError(BaseException):
+class GridError(Exception):
     def __init__(
         self, error: TypeUnion[Exception, str], status: Optional[int] = None
     ) -> None:

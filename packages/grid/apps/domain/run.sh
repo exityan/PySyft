@@ -15,7 +15,7 @@ if [ "$APP_ENV" = "dev" ]; then
     export PYTHONPATH="${PYTHONPATH}:${APP_SRC}"
     
     # run
-    flask run --host=0.0.0.0 --port=$PORT
+    exec gunicorn --reload --chdir ./src -k flask_sockets.worker --bind 0.0.0.0:$PORT  wsgi:app "$@"
 fi
 
 if [ "$APP_ENV" = "production" ]; then
