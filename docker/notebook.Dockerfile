@@ -6,7 +6,7 @@
 # $ docker run -it --rm -v "`pwd`:/notebook" -p 8888:8888 openmined/syft-notebook
 
 ARG VERSION=latest
-FROM openmined/syft:$VERSION
+FROM wicrep/syft:$VERSION
 
 RUN pip install matplotlib jupyterlab ipywidgets
 

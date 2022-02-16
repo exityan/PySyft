@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  domain:
+    domainname: grid
+    container_name: domain
+    image: wicrep/grid-domain:latest
+    environment:
+      - DATABASE_URL=postgresql://postgres:dbpass@domain-db:5432/domain
+      - APP_ENV=dev
+    volumes:
+      - ../packages/grid/apps/domain:/app
+      - ../packages/syft:/syft
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "domain-db"
+    networks: ["net"]
+  domain-db:
+    domainname: grid
+    container_name: db.domain
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: dbpass
+      POSTGRES_DB: domain
+    # volumes:
+    #   - ./data/domain/db/postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks: ["net"]
+networks:
+  net:
+    name: local-grid

@@ -14,7 +14,7 @@
 # $ docker run -it -p 5000:5000 openmined/grid-network
 
 ARG VERSION=latest
-FROM openmined/syft:$VERSION
+FROM wicrep/syft:$VERSION
 
 # envs and args
 ARG APP
